@@ -10,7 +10,7 @@ export function DeepCopyFnc(obj) {
   objKeys.map((objKey, index) => {
     // 객체의 값 중 배열인 경우와 그렇지 않은 경우를 조건문을 통해 구분, 이 조건을 하지 않을 경우 배열로 복사되어야 할 값이 객체로 복사된다.
     Array.isArray(obj[objKey])
-      ? (result[objKey] = [...Object.values(DeepCopyFnc(obj[objKey]))])
+      ? (result[objKey] = Object.values(DeepCopyFnc(obj[objKey])))
       : (result[objKey] = DeepCopyFnc(obj[objKey]))
   })
 
