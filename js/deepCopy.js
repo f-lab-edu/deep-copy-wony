@@ -11,8 +11,7 @@ function isNotObject(obj) {
     typeof obj === 'symbol' ||
     typeof obj !== 'object'
 
-  const result = notDeepCopyObj ? true : false
-  return result
+  return notDeepCopyObj
 }
 
 function getObjectKey(obj) {
