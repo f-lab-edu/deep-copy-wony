@@ -1,5 +1,5 @@
-function isNotObject(obj) {
-  const notDeepCopyObj =
+function getNotObjConditon(obj) {
+  const notObjCondition =
     Array.isArray(obj) ||
     obj === null ||
     obj instanceof Date ||
@@ -11,7 +11,7 @@ function isNotObject(obj) {
     typeof obj === 'symbol' ||
     typeof obj !== 'object'
 
-  return notDeepCopyObj
+  return notObjCondition
 }
 
 function getObjectKey(obj) {
@@ -30,8 +30,8 @@ function makeUpObj(objKeyArr, obj) {
 }
 
 export function deepCopyMainFnc(obj) {
-  const objTypeDecision = isNotObject(obj)
-  if (objTypeDecision) return obj
+  const objTypeStatus = getNotObjConditon(obj)
+  if (objTypeStatus) return obj
 
   const objKeyArr = getObjectKey(obj)
   return makeUpObj(objKeyArr, obj)
