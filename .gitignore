@@ -1,0 +1,66 @@
+# macOS 관련
+.DS_Store
+
+# Node.js 관련
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+.pnpm-debug.log
+
+# Next.js 관련
+.next/
+out/
+
+# Nextron 관련
+dist/
+release/
+
+# 환경 변수 파일
+.env
+.env.local
+.env.*.local
+
+# TypeScript 관련
+*.tsbuildinfo
+
+# ESLint, Prettier 관련
+.eslintcache
+.prettiercache
+
+# VS Code 관련
+.vscode/
+
+# 로그 및 캐시 파일
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.cache/
+*.swp
+*.swo
+*.swn
+
+# Puppeteer 관련
+.puppeteer/
+.chromium/
+
+# Expo / React Native 관련
+.expo/
+.expo-shared/
+web-build/
+android/
+ios/
+
+# MIDI 및 오디오 작업 관련 (Cubase 등)
+*.bak
+*.csh
+*.npr
+*.peak
+*.bwf
