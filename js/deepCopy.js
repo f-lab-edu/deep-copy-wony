@@ -1,3 +1,25 @@
+const typeArr = obj => {
+  return Array.isArray(obj)
+}
+const typeDate = obj => {
+  return obj instanceof Date
+}
+const typeRegExp = obj => {
+  return obj instanceof RegExp
+}
+const typeMap = obj => {
+  return obj instanceof Map
+}
+const typeSet = obj => {
+  return obj instanceof Set
+}
+const typeWeakMap = obj => {
+  return obj instanceof WeakMap
+}
+const typeWeakSet = obj => {
+  return obj instanceof WeakSet
+}
+
 function getNotObjConditon(obj) {
   const notObjCondition = obj === null || typeof obj !== 'object'
 
@@ -11,34 +33,38 @@ function getObjectKey(obj) {
 
 function makeUpObj(objKeyArr) {
   const result = {}
-  objKeyArr.forEach(([key, value], index) => {
+  objKeyArr.forEach(([key, value]) => {
     result[key] = deepCopyMainFnc(value)
   })
 
   return result
 }
 
-function deepCopyConstructor(obj) {
-  const result = new obj.constructor(obj)
-  return result
-}
-
 function getConstructorDecision(obj) {
   const constructorDeciision =
-    Array.isArray(obj) ||
-    obj instanceof Date ||
-    obj instanceof RegExp ||
-    obj instanceof Map ||
-    obj instanceof Set ||
-    obj instanceof WeakMap ||
-    obj instanceof WeakSet
+    typeArr(obj) ||
+    typeDate(obj) ||
+    typeMap(obj) ||
+    typeRegExp(obj) ||
+    typeSet(obj) ||
+    typeWeakMap(obj) ||
+    typeWeakSet(obj)
 
   return constructorDeciision
 }
 
+function deepCopyConstructor(obj) {
+  const result = typeArr(obj)
+    ? new obj.constructor(...obj)
+    : new obj.constructor(obj)
+
+  return result
+}
+
 function determineObjFnc(obj) {
   const constructorStaus = getConstructorDecision(obj)
-  if (constructorStaus === true) {
+
+  if (constructorStaus) {
     return deepCopyConstructor(obj)
   } else {
     const objKeysArr = getObjectKey(obj)
