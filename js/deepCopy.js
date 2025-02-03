@@ -47,7 +47,7 @@ function getConstructorDecision(obj) {
 
 function CopyConstructor(obj) {
   const result = checkTypeArr(obj)
-    ? new obj.constructor(...obj) //obj타입이 Array일 경우 스프레드 연산자를 사용함. 사용하지 않을 경우 반환될 때 이중배열로 반환됨.
+    ? new obj.constructor(...obj) //obj타입이 Array일 경우 스프레드 연산자를 사용함. 사용하지 않을 경우 반환될 때 이차원배열로 반환됨.
     : new obj.constructor(obj) // obj 타입의 새로운 객체를 생성하는 방법.
 
   return result
@@ -71,14 +71,3 @@ export function deepCopyMainFnc(obj) {
 
   return determineObjFnc(obj)
 }
-
-// function deepCopySet(obj) {
-//   const result = new Set([...obj])
-//   return result
-// }
-
-// function deepCopyMap(obj) {
-//   console.log('map', obj)
-//   const result = new Map(obj)
-//   return result
-// }
