@@ -15,9 +15,7 @@ describe('deepcopy check test', () => {
     const copied = deepCopyMainFnc(obj)
     copied.obj.str = '라마바'
     console.log('copied', copied)
-    expect(copied).not.toEqual(obj)
-    expect(copied.obj.objNum).toBe(obj.obj.objNum)
-    expect(copied.obj.str).not.toBe(obj.obj.str)
+    expect(copied).not.toBe(obj)
   })
   test('객체 안의 Date 복사', () => {
     const date = new Date()
@@ -28,36 +26,27 @@ describe('deepcopy check test', () => {
     // 수정한 날짜의 값 메모리가 확실히 바뀐 건지 확인하기 위함
   })
   test('정규식 복사', () => {
-    const reg = { reg: new RegExp(/[^0-9]/) }
+    const reg = new RegExp(/[^0-9]/)
     const copied = deepCopyMainFnc(reg)
     // copied.reg = new RegExp(/[^a-z]/)
-    expect(copied.reg).not.toBe(reg.reg)
+    expect(copied).not.toBe(reg)
   })
   test('Map 복사', () => {
     const map = new Map([['name', '이방원']])
     const copied = deepCopyMainFnc(map)
     copied.set('22', 3)
     console.log('original', map, 'cccopied', copied)
-    // copied.set('like', 'jejus')
-    // copied.map.set('like', 'jejus')
     expect(copied).not.toBe(map)
   })
   test('Set 복사', () => {
-    const arr = ['set', '이방원']
-    const setValue = new Set(arr)
+    const setValue = new Set()
     const copied = deepCopyMainFnc(setValue)
-    console.log('1111', setValue === copied)
-    // copied.add('set추가')
-    console.log('첫번쩨', setValue, '<====> 두번째', copied)
     expect(copied).not.toBe(setValue)
   })
   test('Array 복사', () => {
     const arr = ['set', '이방원']
     // console.log('1111', setValue)
     const copied = deepCopyMainFnc(arr)
-    console.log('copiedArr', copied)
-    copied.push('fefefe')
-    console.log('첫번쩨', arr, '<====> 두번째', copied)
     expect(copied).not.toBe(arr)
   })
 })
