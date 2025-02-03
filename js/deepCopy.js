@@ -1,22 +1,15 @@
-const checkTypeArr = obj => {
-  return Array.isArray(obj)
-}
-const checkTypeDate = obj => {
-  return obj instanceof Date
-}
-const checkTypeRegExp = obj => {
-  return obj instanceof RegExp
-}
-const checkTypeMap = obj => {
-  return obj instanceof Map
-}
-const checkTypeSet = obj => {
-  return obj instanceof Set
-}
+const checkTypeArr = obj => Array.isArray(obj)
+
+const checkTypeDate = obj => obj instanceof Date
+
+const checkTypeRegExp = obj => obj instanceof RegExp
+
+const checkTypeMap = obj => obj instanceof Map
+
+const checkTypeSet = obj => obj instanceof Set
 
 function getNotObjConditon(obj) {
   const notObjCondition = obj === null || typeof obj !== 'object'
-
   return notObjCondition
 }
 
@@ -65,7 +58,6 @@ function determineObjFnc(obj) {
 }
 
 export function deepCopyMainFnc(obj) {
-  console.log('obj@@', obj)
   const objTypeStatus = getNotObjConditon(obj)
   if (objTypeStatus) return obj
 
