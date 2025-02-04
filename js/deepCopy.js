@@ -1,14 +1,20 @@
-const copyTypeArr = target => Array.isArray(target) && new Array(...target)
+const checkTypeArr = target => Array.isArray(target)
+const copyTypeArr = target => new Array(...target)
 
-const copyTypeDate = target => target instanceof Date && new Date(target)
+const checkTypeDate = target => target instanceof Date
+const copyTypeDate = target => new Date(target)
 
-const copyTypeRegExp = target => target instanceof RegExp && new RegExp(target)
+const checkTypeRegExp = target => target instanceof RegExp
+const copyTypeRegExp = target => new RegExp(target)
 
-const copyTypeMap = target => target instanceof Map && new Map(target)
+const checkTypeMap = target => target instanceof Map
+const copyTypeMap = target => new Map(target)
 
-const copyTypeSet = target => target instanceof Set && new Set(target)
+const checkTypeSet = target => target instanceof Set
+const copyTypeSet = target => new Set(target)
 
-const copyJson = target => typeof target === 'object' && copyJsonObj(target)
+const checkJson = target => typeof target === 'object'
+const copyJson = target => copyJsonObj(target)
 
 function checkTypeNotObj(target) {
   const notObjCondition = target === null || typeof target !== 'object'
@@ -31,12 +37,12 @@ function copyJsonObj(target) {
 }
 
 function copyTarget(target) {
-  if (copyTypeArr(target)) return copyTypeArr(target)
-  if (copyTypeDate(target)) return copyTypeDate(target)
-  if (copyTypeRegExp(target)) return copyTypeRegExp(target)
-  if (copyTypeMap(target)) return copyTypeMap(target)
-  if (copyTypeSet(target)) return copyTypeSet(target)
-  if (copyJson(target)) return copyJson(target)
+  if (checkTypeArr(target)) return copyTypeArr(target)
+  if (checkTypeDate(target)) return copyTypeDate(target)
+  if (checkTypeRegExp(target)) return copyTypeRegExp(target)
+  if (checkTypeMap(target)) return copyTypeMap(target)
+  if (checkTypeSet(target)) return copyTypeSet(target)
+  if (checkJson(target)) return copyJson(target)
 }
 
 export function deepCopyMainFnc(target) {
