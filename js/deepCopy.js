@@ -36,13 +36,19 @@ function copyJsonObj(target) {
   return result
 }
 
+const objActionList = [
+  { check: checkTypeArr, copy: copyTypeArr },
+  { check: checkTypeDate, copy: copyTypeDate },
+  { check: checkTypeRegExp, copy: copyTypeRegExp },
+  { check: checkTypeMap, copy: copyTypeMap },
+  { check: checkTypeSet, copy: copyTypeSet },
+  { check: checkJson, copy: copyJson },
+]
+
 function copyTarget(target) {
-  if (checkTypeArr(target)) return copyTypeArr(target)
-  if (checkTypeDate(target)) return copyTypeDate(target)
-  if (checkTypeRegExp(target)) return copyTypeRegExp(target)
-  if (checkTypeMap(target)) return copyTypeMap(target)
-  if (checkTypeSet(target)) return copyTypeSet(target)
-  if (checkJson(target)) return copyJson(target)
+  for (const { check, copy } of objActionList) {
+    if (check(target)) return copy(target)
+  }
 }
 
 export function deepCopyMainFnc(target) {
