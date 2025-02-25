@@ -52,8 +52,5 @@ function copyTarget(target) {
 }
 
 export function deepCopyMainFnc(target) {
-  const objTypeStatus = checkTypeNotObj(target)
-  if (objTypeStatus) return target
-
-  return copyTarget(target)
+  return copyTarget(target) ? copyTarget(target) : target
 }
